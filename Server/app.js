@@ -1,27 +1,54 @@
-const express = require('express')
-const app = express()
-const morgan = require('morgan')
-const bodyParser = require('body-parser')
+const express = require('express');
+const app = express();
+
+const classRoutes = require('./api/routes/classes');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+//process.env.MONGO_ATLAS_PW
+mongoose.connect('mongodb+srv://admin:password978@openeval-mvp-sample-cluster-ohzcj.mongodb.net/database?retryWrites=true',
+{
+    useNewUrlParser: true
+}
+);
 
 // Setting up some middleware
-app.use(morgan('dev'))
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json())
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
-
-//Allows connections from different IPs
+//preventing CORS errors
 app.use((request, response, next) => {
     response.header('Access-Control-Allow-Origin', '*');
     response.header(
         'Access-Control-Allow-Headers',
         'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-        );
+    );
     if (request.method === 'OPTIONS') {
         response.header('Access-Control-Allow-Methods',
-            'PUT, POST, PATH, DELETE, GET');
-        return res.status(200).json({});
+            'PUT, POST, PATCH, DELETE, GET');
+        return response.status(200).json({});
     }
     next();
+});
+
+app.use('/classes', classRoutes);
+
+//handle errors
+app.use((req, res, next) => {
+    const error = new Error('Not found');
+    error.status = 404;
+    next(error);
+});
+
+app.use((error, req, res, next) => {
+    res.status(error.status || 500);
+    res.json({
+        error: {
+            message: error.message
+        }
+    });
 });
 
 //Pipe in API routes HERE
@@ -34,4 +61,4 @@ app.use((request, response, next) => {
     })
 })*/
 
-module.exports = app
+module.exports = app;
