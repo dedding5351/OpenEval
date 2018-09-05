@@ -17,7 +17,6 @@ db.once('open', function callback() {
     var User = mongoose.model('User', userSchema, 'courses');
     User.find(function(err, users){
         if(err) return console.err(err);
-        console.log(users);
     });
 
 });
