@@ -30,8 +30,7 @@ router.post('/',(req, res, next) => {
 
 router.get('/:courseNumber',(req, res, next) => {
     const id = req.params.courseNumber;
-    console.log(id);
-    courses.find({'courseNumber': id}).exec(function(err, result){
+    courses.find({'courseNumber': {'$regex': id, '$options': 'i'}}).exec(function(err, result){
         if (err) throw err;
         res.status(200).json({
             message: result
