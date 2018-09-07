@@ -8,24 +8,24 @@ mongoose.connect('mongodb+srv://admin:password978@openeval-mvp-sample-cluster-oh
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
 
-db.once('open', function callback() {
-    var userSchema = new mongoose.Schema({
-        _id: mongoose.Schema.Types.ObjectId,
-        courseNumber: String,
-        courseName: String
-    });
-    var User = mongoose.model('User', userSchema, 'courses');
-    User.find(function(err, users){
-        if(err) return console.err(err);
-    });
+//db.once('open', function callback() {
+//    var userSchema = new mongoose.Schema({
+//        _id: mongoose.Schema.Types.ObjectId,
+//        courseNumber: String,
+//        courseName: String
+//    });
+//    var User = mongoose.model('User', userSchema, 'courses');
+//    User.find(function(err, users){
+//        if(err) return console.err(err);
+//    });
+//
+//});
 
-});
-
-const courses = mongoose.Schema({
+const course = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     courseNumber: String,
     courseName: String}
 );
 
 
-module.exports = mongoose.model('courses', courses);
+module.exports = mongoose.model('Course', course);
