@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const courses = require('../models/course');
+const registeredCourses = require('../models/registeredCourse')
+
 router.get('/',(req, res, next) => {
     courses.find().exec(function(err, result){
         if (err) throw err;
@@ -44,6 +46,25 @@ router.get('/:courseNumber',(req, res, next) => {
             console.log(err);
             res.status(500).json({error:err});
         });
+});
+
+router.post('/register', (req, res) => {
+
+    const registeredCourse = new RegisteredCourse({
+        _id: new mongoose.Types.ObjectId(),
+        professor : req.body.professor,
+        courseName : req.body.courseName,
+        courseNumber: req.body.courseNumber
+    });
+
+    registeredCourse.save().then(res => {
+        console.log(res);
+        res.status(200).json({success : true});
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({error:err});
+    });
 });
 
 module.exports = router;
