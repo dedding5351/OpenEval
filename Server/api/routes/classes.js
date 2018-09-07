@@ -5,11 +5,11 @@ const courses = require('../models/course');
 router.get('/',(req, res, next) => {
     courses.find().exec(function(err, result){
         if (err) throw err;
-        console.log(result);
+        res.status(200).json({
+            message: result
+        });
     });
-    res.status(200).json({
-        message: 'Handling GET requests to /classes'
-    });
+
 });
 
 router.post('/',(req, res, next) => {
@@ -30,20 +30,13 @@ router.post('/',(req, res, next) => {
 
 router.get('/:courseNumber',(req, res, next) => {
     const id = req.params.courseNumber;
-    console.log(id);
-    Course.find()
-        .where('courseNumber')
-        .equals(id)
-        .select('courseName')
-        .exec()
-        .then(doc => {
-            console.log(doc);
-            res.status(200).json(doc);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({error:err});
+    courses.find({'courseNumber': {'$regex': id, '$options': 'i'}}).exec(function(err, result){
+        if (err) throw err;
+        res.status(200).json({
+            message: result
         });
+    });
+
 });
 
 module.exports = router;
