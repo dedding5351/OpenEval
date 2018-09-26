@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Course = require('../models/course');
 router.get('/',(req, res, next) => {
-    courses.find().exec(function(err, result){
+    Course.find().exec(function(err, result){
         if (err) throw err;
         res.status(200).json({
             message: result
@@ -30,7 +30,7 @@ router.post('/',(req, res, next) => {
 
 router.get('/:courseNumber',(req, res, next) => {
     const id = req.params.courseNumber;
-    courses.find({'courseNumber': {'$regex': id, '$options': 'i'}}).exec(function(err, result){
+    Course.find({'courseNumber': {'$regex': id, '$options': 'i'}}).exec(function(err, result){
         if (err) throw err;
         res.status(200).json({
             message: result
