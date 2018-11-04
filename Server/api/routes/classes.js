@@ -4,15 +4,7 @@ const mongoose = require('mongoose');
 const courses = require('../models/course');
 const registeredCourses = require('../models/registeredCourse')
 
-router.get('/',(req, res, next) => {
-    courses.find().exec(function(err, result){
-        if (err) throw err;
-        console.log(result);
-    });
-    res.status(200).json({
-        message: 'Handling GET requests to /classes'
-    });
-});
+p
 
 router.post('/',(req, res, next) => {
     const course = new Course({

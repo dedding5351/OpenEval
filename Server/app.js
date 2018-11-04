@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 
 const classRoutes = require('./api/routes/classes');
+const authenticateRoutes = require('./api/routes/Authenticate');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -34,6 +35,7 @@ app.use((request, response, next) => {
 });
 
 app.use('/classes', classRoutes);
+app.use('/authenticate', authenticateRoutes);
 
 //handle errors
 app.use((req, res, next) => {
