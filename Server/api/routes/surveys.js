@@ -17,6 +17,8 @@ router.get('/:professor',(req, res, next) => {
 
 });
 
+//view available surveys in a course (professor or student)
+
 router.get('/:professor/:course',(req, res, next) => {
     const professor = req.params.professor
     const course = req.params.course
@@ -35,8 +37,18 @@ router.post('/default/:startTime/:endTime/:surveyName/:course/:semester/:profess
         const q = result[0].questions;
         var questions = [];
         for (var i = 0; i < q.length; i++) {
-            questions.push(q[i].question);
+            var x = {
+                       question: q[i].question,
+                       questionID: q[i].id,
+                       type: q[i].type
+                       };
+            if (q[i].type == "mc") {
+                x.option = q[i].options;
+            }
+            questions.push(x);
         }
+        console.log(questions);
+
         const survey = new Survey({
             _id: new mongoose.Types.ObjectId(),
             questions: questions,

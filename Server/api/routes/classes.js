@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Course = require('../models/course');
+
+
 router.get('/',(req, res, next) => {
     Course.find().exec(function(err, result){
         if (err) throw err;

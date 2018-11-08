@@ -24,9 +24,10 @@ db.on('error', console.error.bind(console, 'connection error: '));
 const response = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     surveyID: String,
-    questionID: String,
+    question: String,
     response: String,
-    username: String
+    gatech_id: String,
+    type: String
 	});
 
 
