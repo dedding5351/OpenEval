@@ -14,7 +14,7 @@ const studentRegCourse = mongoose.Schema({
     courseNumber: String,
     courseName: String,
     professor: String,
-    student: String});
+    gatech_id: String});
 
 
 module.exports = mongoose.model('StudentRegCourse', studentRegCourse);
