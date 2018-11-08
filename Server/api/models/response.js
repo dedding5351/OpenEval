@@ -26,7 +26,7 @@ const response = mongoose.Schema({
     surveyID: String,
     question: String,
     response: String,
-    username: String,
+    gatech_id: String,
     type: String
 	});
 

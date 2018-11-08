@@ -44,7 +44,7 @@ router.get('/default/:surveyID',(req, res, next) => {
 
 //submits a survey response and updates response if survey was previously
 router.post('/responseComplete',(req, res, next) => {
-    Response.updateMany({'type': req.body.type,'username': req.body.username, 'surveyID': req.body.surveyID, 'question': req.body.question}, {'response': req.body.response}, {upsert: true}).exec(function(err, result){
+    Response.updateMany({'type': req.body.type,'gatech_id': req.body.gatech_id, 'surveyID': req.body.surveyID, 'question': req.body.question}, {'response': req.body.response}, {upsert: true}).exec(function(err, result){
         if (err) throw err;
         res.status(200).json({
             message: result
