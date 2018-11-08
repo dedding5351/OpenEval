@@ -5,6 +5,8 @@ const classRoutes = require('./api/routes/classes');
 const questionRoutes = require('./api/routes/question');
 const surveyRoutes = require('./api/routes/surveys');
 const responseRoutes = require('./api/routes/responses');
+const registeredCourseRoutes = require('./api/routes/registeredCourses');
+const studentRegisteredCourseRoutes = require('./api/routes/studentRegCourses');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -40,6 +42,8 @@ app.use('/classes', classRoutes);
 app.use('/questions', questionRoutes);
 app.use('/surveys', surveyRoutes);
 app.use('/responses', responseRoutes);
+app.use('/registeredCourses', registeredCourseRoutes);
+app.use('/studentRegCourses', studentRegisteredCourseRoutes);
 
 //handle errors
 app.use((req, res, next) => {
