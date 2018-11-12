@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <title>OpenEval | All Classes</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+
+<body>
+
+  <div class=container-fluid>
+
+    <div>
+      <nav class="navbar navbar-inverse" role="navigation" style="padding-left: 10%;">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Registered Classes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/all-classes">All Classes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="jumbotron">
+      <p>Search for a course here</p>
+      <form action="/search" method="post">
+        <label for="courseName">Course name:</label>
+        <input id="courseName" type="text" name="courseName" placeholder="e.g. CS 1331" onkeyup="console.log(this.value)">
+        <input type="submit" value="Search">
+      </form>
+      <p>List of all courses here</p>
+      <div id="class-list-wrapper">
+        <ul id="class-list">
+          {{#each this}}
+            <!-- <li><button type="button" id="{{{this.courseNumber}}}" onclick="addClass('{{{this.courseNumber}}}')">{{{this.courseNumber}}}: {{{this.courseName}}}</button></li> -->
+            <li>{{{this.courseNumber}}}: {{{this.courseName}}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+
+    <footer>
+      <p>OpenEval | Georgia Tech Junior Design | Fall 2018</p>
+    </footer>
+
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" src="../js/all-classes.js"></script>
+
+</body>
+
+</html>
