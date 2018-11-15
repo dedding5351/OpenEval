@@ -3,11 +3,12 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Survey = require('../models/survey');
 const Default = require('../models/questions');
+const ObjectId = require('mongodb').ObjectID;
 
 
 
 router.get('/:professor',(req, res, next) => {
-    const professor = req.params.professor
+    const professor = req.params.professor;
     Survey.find({'professor' : professor}).exec(function(err, result){
         if (err) throw err;
         res.status(200).json({
@@ -16,6 +17,20 @@ router.get('/:professor',(req, res, next) => {
     });
 
 });
+
+//get specific survey details
+
+router.get('/',(req, res, next) => {
+    const surveyID = req.body.surveyID;
+    Survey.find({"_id": new ObjectId(surveyID)}).exec(function(err, result){
+        if (err) throw err;
+        console.log(result);
+        res.status(200).json({
+            message: result
+        });
+    });
+});
+
 
 //view available surveys in a course (professor or student)
 
