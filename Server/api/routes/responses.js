@@ -39,7 +39,7 @@ router.get('/default/:surveyID',(req, res, next) => {
             }
         }
         res.status(200).json({
-            message: answers
+            responses: answers
         });
     });
 
