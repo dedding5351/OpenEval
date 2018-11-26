@@ -28,7 +28,6 @@ router.get('/default/:surveyID',(req, res, next) => {
             }
             //if q is defined, then check if response has already been counted
             else if (answers[result[i].question] != undefined && result[i].type == "mc") {
-                console.log(answers[result[i].question]);
                 var responses = answers[result[i].question]
                 if (responses[result[i].response] == undefined) {
                     responses[result[i].response] = 1;
