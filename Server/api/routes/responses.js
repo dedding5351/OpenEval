@@ -22,16 +22,28 @@ router.get('/default/:surveyID',(req, res, next) => {
             }
             else if (answers[result[i].question] == undefined && result[i].type == "mc") {
                 options = {};
-                answers[result[i].question] = options;
                 options[result[i].response] = 1;
+//                console.log(options);
+                answers[result[i].question] = options;
+//                console.log(answers);
 
             }
             else if (answers[result[i].question] != undefined && result[i].type == "mc") {
-                var count = answers[result[i].question];
-                answers[result[i].question] = count + 1;
+                console.log(answers[result[i].question]);
+                var responses = answers[result[i].question]
+                if (responses[result[i].response] == undefined) {
+                    responses[result[i].response] = 1;
+                } else {
+                    var count = responses[result[i].response] + 1;
+                    responses[result[i].response] = count;
+                }
+                console.log(answers);
+//                if answers[result[i].question]
+//                var count = answers[result[i].question];
+//                answers[result[i].question] = count + 1;
             }
         }
-        console.log(answers);
+//        console.log(answers);
 //        console.log(result);
         res.status(200).json({
             message: answers
