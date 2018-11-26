@@ -20,21 +20,25 @@ router.get('/default/:surveyID',(req, res, next) => {
                 var prev = answers[result[i].question];
                 answers[result[i].question] = prev.concat((result[i].response));
             }
+            //if q is not defined and mc
             else if (answers[result[i].question] == undefined && result[i].type == "mc") {
                 options = {};
-                answers[result[i].question] = options;
                 options[result[i].response] = 1;
-
+                answers[result[i].question] = options;
             }
+            //if q is defined, then check if response has already been counted
             else if (answers[result[i].question] != undefined && result[i].type == "mc") {
-                var count = answers[result[i].question];
-                answers[result[i].question] = count + 1;
+                var responses = answers[result[i].question]
+                if (responses[result[i].response] == undefined) {
+                    responses[result[i].response] = 1;
+                } else {
+                    var count = responses[result[i].response] + 1;
+                    responses[result[i].response] = count;
+                }
             }
         }
-        console.log(answers);
-//        console.log(result);
         res.status(200).json({
-            message: answers
+            responses: answers
         });
     });
 
