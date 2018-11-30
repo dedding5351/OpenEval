@@ -16,16 +16,14 @@ router.post('/login',(req, res, next) => {
     console.log(req.body.username);
     console.log(req.body.password);
 
-    Student.find({"gatech_id": {'$regex': req.body.username, '$options': 'i'},
-        "gatech_pw": {'$regex': req.body.password, '$options': 'i'}}).exec(function(err, result) {
+    Student.find({"gatech_id": req.body.username, "gatech_pw" : req.body.password}).exec(function(err, result) {
 
         if (err) throw err;
 
         var found = false;
-        
+
         if (result.length == 0) {
-            Professor.find({"gatech_id": {'$regex': req.body.username, '$options': 'i'},
-                "gatech_pw": {'$regex': req.body.password, '$options': 'i'}}).exec(function(err, result){
+            Professor.find({"gatech_id": req.body.username, "gatech_pw" : req.body.password}).exec(function(err, result){
                     
                 if (err) throw err;
 
