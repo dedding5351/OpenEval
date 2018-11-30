@@ -8,7 +8,6 @@ mongoose.connect('mongodb+srv://admin:password978@openeval-mvp-sample-cluster-oh
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
 
-<<<<<<< HEAD
 //db.once('open', function callback() {
 //    var userSchema = new mongoose.Schema({
 //        _id: mongoose.Schema.Types.ObjectId,
@@ -21,26 +20,6 @@ db.on('error', console.error.bind(console, 'connection error: '));
 //    });
 //
 //});
-=======
-db.once('open', function callback() {
-    var userSchema = new mongoose.Schema({
-        _id: mongoose.Schema.Types.ObjectId,
-        courseNumber: String,
-        courseName: String
-    });
-    var User = mongoose.model('User', userSchema, 'courses');
-    User.find(function(err, users){
-        if(err) return console.err(err);
-        // console.log(users);
-    });
-
-    var regCoursesSchema = new mongoose.Schema({
-        _id: mongoose.Schema.Types.ObjectId,
-        courseNumber: String,
-        courseName: String,
-        professor: String
-    });
->>>>>>> origin/Add-Registered-Course
 
 const course = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
