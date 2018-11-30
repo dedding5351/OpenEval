@@ -10,31 +10,76 @@ var issuer = "OpenEval";
 var audience = "OpenEval";
 
 
+async function student_match(gatech_id, gatech_pw) {
+    return new Promise(function(resolve, reject) {
+        Student.find({"gatech_id": gatech_id, "gatech_pw" : gatech_pw}).exec(function(err, result) {
+        
+            if (err) reject(err);
+            console.log("checking student");
+            console.log(result);
+
+            var ret_object = {authenticated : false, user_type : ""}
+            if (result.length > 0) {
+                ret_object.authenticated = true;
+                ret_object.user_type = "student";
+            }
+            resolve(ret_object)
+        })
+    })
+    
+
+}
+
+async function professor_match(gatech_id, gatech_pw) {
+    return new Promise(function(resolve, reject) {
+        Professor.find({"gatech_id": gatech_id, "gatech_pw" : gatech_pw}).exec(function(err, result) {
+        
+            if (err) reject(err);
+            console.log("checking professor");
+            console.log(result);
+
+            var ret_object = {authenticated : false, user_type : ""}
+            if (result.length > 0) {
+                ret_object.authenticated = true;
+                ret_object.user_type = "professor";
+            }
+            resolve(ret_object)
+        })
+    })
+}
+
+
+async function login(username, password) {
+
+    let s_match = await student_match(username, password);
+    let p_match = await professor_match(username, password);
+
+
+
+    return Promise.all([student_match(username, password), professor_match(username, password)])
+        .then(([student_authentication, professor_authentication]) => {
+            if (!student_authentication.authenticated) {
+                return professor_authentication
+            } else {
+                return student_authentication
+            }
+        })
+}
+
+
 router.post('/login',(req, res, next) => {
 
 
-    console.log(req.body.username);
-    console.log(req.body.password);
-
-    Student.find({"gatech_id": req.body.username, "gatech_pw" : req.body.password}).exec(function(err, result) {
-
-        if (err) throw err;
-
-        var found = false;
-
-        if (result.length == 0) {
-            Professor.find({"gatech_id": req.body.username, "gatech_pw" : req.body.password}).exec(function(err, result){
-                    
-                if (err) throw err;
-
-                found = result.length > 0
-            });
-        } else {
-            found = true
-        }
 
 
-        if (found) {
+
+    login(req.body.username, req.body.password).then(function(login_results) {
+        console.log(login_results);    
+
+        if (login_results != undefined && login_results.authenticated) {
+
+            var user_type =  login_results.user_type;
+
             var response = {authenticated : true};
 
             var token = jwt.sign(response, {
@@ -43,14 +88,15 @@ router.post('/login',(req, res, next) => {
                 audience : audience
             });
 
+            res.status(200).json({token : token, user_type : user_type});
 
-            res.status(200).json({token : token});
         } else {
             var response = {message : "username/password combination not found"};
             res.status(401).json(response)
         }
-
+    
     });
+    
 });
 
 
@@ -71,6 +117,10 @@ router.get('/authenticate', (req, res, next) => {
     }
 
 });
+
+
+
+
 
 
 module.exports = router;

@@ -11,7 +11,6 @@ db.on('error', console.error.bind(console, 'connection error: '));
 const user = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     courses: String,
-    courseName: String,
     gatech_id : String,
     full_name : String,
     gatech_pw : String}
