@@ -37,32 +37,12 @@
     <div class="jumbotron">
       <p>List of current courses here</p>
 
-        {{#each this}}
-          <li>{{{this.courseNumber}}}: {{{this.courseName}}}</li>
-        {{/each}}
-
-      <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newClassModal">+ Add New Class</button>
-
-
-      <div class="modal fade" id="newClassModal" tabindex="-1" role="dialog" aria-labelledby="newClassModalTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-      <div class="modal-header">
-      <h5 class="modal-title" id="newClassModalTitle">Add New Class</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-      </button>
-      </div>
-      <div class="modal-body">
-      Course Reference Number <input type="text" placeholder="e.g. 87431">
-      </div>
-      <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-      <button type="submit" class="btn btn-primary">Register</button>
-      </div>
-      </div>
-      </div>
-      </div> -->
+        <form action="/view-surveys" method="post">
+          {{#each this}}
+            <input type="radio" name="courseNumber" value="{{courseNumber}} {{professor}}"> {{{this.courseNumber}}}: {{{this.courseName}}}<br>
+          {{/each}}
+          <input type="submit" value="View this course's surveys">
+        </form>
 
     </div>
 

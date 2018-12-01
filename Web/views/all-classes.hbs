@@ -38,15 +38,25 @@
       <p>Search for a course here</p>
       <form action="/search" method="post">
         <label for="courseName">Course name:</label>
-        <input id="courseName" type="text" name="courseName" placeholder="e.g. CS 1331" onkeyup="getAllCourses('https://openeval-server.herokuapp.com/classes/' + this.value)">
+        <input id="courseName" type="text" name="courseName" placeholder="e.g. CS 1331" onkeyup="filterCourses(this.value)">
         <input type="submit" value="Search">
       </form>
       <p>List of all courses here</p>
       <div id="class-list-wrapper">
         <ul id="class-list">
+
+          <!-- {{#each message}}
+            <li class="{{_id}}"><button class="btn btn-block">{{_id}}</button></li><br>
+          {{/each}} -->
+
           {{#each this}}
-            <li class={{{this._id}}}><button onclick="registerCourse(this.courseNumber, this.courseName, this._id)">{{{this.courseNumber}}}: {{{this.courseName}}}</button></li>
+            {{#each this}}
+              {{#each this}}
+                <li class="{{this}}"><button class="btn btn-block">{{this}}</button></li><br>
+              {{/each}}
+            {{/each}}
           {{/each}}
+
         </ul>
       </div>
     </div>
