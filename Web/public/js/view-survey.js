@@ -5,10 +5,10 @@ const fs = require('fs');
 module.exports = {
     /**
      *
-     * Gets all of a professor's registered courses seen at the given url and
+     * Gets all survey results of the survey at the given url and
      * constructs a Handlebars template according to the data.
      *
-     * @param  url  string, API endpoint pointing to all a professor's registered courses
+     * @param  url  string, API endpoint pointing to all of a survey's responses
      * @return none
      *
      */
@@ -62,6 +62,8 @@ module.exports = {
     }
 }
 
+// handlebars helper to see if 'this' is an object
+// lets me know if there is more nested within 'this'
 handlebars.registerHelper('ifObject', function(item, options) {
     if (typeof item === "object") {
         return options.fn(this);

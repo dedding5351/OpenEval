@@ -30,6 +30,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/about">About</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Logout</a>
+          </li>
         </ul>
       </nav>
     </div>
@@ -39,22 +42,17 @@
       <form action="/search" method="post">
         <label for="courseName">Course name:</label>
         <input id="courseName" type="text" name="courseName" placeholder="e.g. CS 1331" onkeyup="filterCourses(this.value)">
-        <input type="submit" value="Search">
+        <!-- <input type="submit" value="Search"> -->
       </form>
       <p>List of all courses here</p>
       <div id="class-list-wrapper">
         <ul id="class-list">
 
-          <!-- {{#each message}}
-            <li class="{{_id}}"><button class="btn btn-block">{{_id}}</button></li><br>
-          {{/each}} -->
-
-          {{#each this}}
+          {{#each message}}
             {{#each this}}
-              {{#each this}}
-                <li class="{{this}}"><button class="btn btn-block">{{this}}</button></li><br>
-              {{/each}}
+                <li class="{{{this}}}">{{@key}}: {{{this}}}</li>
             {{/each}}
+            <br>
           {{/each}}
 
         </ul>

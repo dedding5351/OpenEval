@@ -30,6 +30,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/about">About</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Logout</a>
+          </li>
         </ul>
       </nav>
     </div>
@@ -37,12 +40,31 @@
     <div class="jumbotron">
       <p>List of current courses here</p>
 
-        <form action="/view-surveys" method="post">
+<!--         <form action="/view-surveys" method="post">
           {{#each this}}
             <input type="radio" name="courseNumber" value="{{courseNumber}} {{professor}}"> {{{this.courseNumber}}}: {{{this.courseName}}}<br>
           {{/each}}
           <input type="submit" value="View this course's surveys">
-        </form>
+        </form> -->
+
+<!--         {{#each this}}
+          <form action="/view-surveys" method="post">
+            <input class="btn btn-block" type="submit" name="courseNumber" value="{{courseNumber}} {{professor}}"> {{{this.courseNumber}}}: {{{this.courseName}}}<br>
+          </form>
+        {{/each}} -->
+
+        <table style="margin: auto;">
+          {{#each this}}
+            <tr>
+              <td>{{{this.courseNumber}}}: {{{this.courseName}}}</td>
+              <td>
+                <form action="/view-surveys" method="post">
+                  <input class="btn btn-block" type="submit" name="courseNumber" value="{{courseNumber}} {{professor}}">
+                </form>
+              </td>
+            </tr>
+          {{/each}}
+        </table>
 
     </div>
 

@@ -75,19 +75,29 @@ module.exports = {
 //     req.end();
 // }
 
+/**
+ *
+ * Goes through the course list and hides those courses that do not match
+ * the search term.
+ * If there is no search term, unhide all courses.
+ *
+ * @param  searchTerm  string, the user's search term (partial course number)
+ * @return none
+ *
+ */
 function filterCourses(searchTerm) {
     // console.log(searchTerm);
-    classList = document.getElementById("class-list").getElementsByTagName("li");
+    courseList = document.getElementById("class-list").getElementsByTagName("li");
     if (searchTerm == "") {
-        for (var i = 0; i < classList.length; i++) {
-            classList[i].style.display = "list-item";
+        for (var i = 0; i < courseList.length; i++) {
+            courseList[i].style.display = "list-item";
         }
     } else {
-        for (var i = 0; i < classList.length; i++) {
-            if (classList[i].classList[0].startsWith(searchTerm)) {
-                classList[i].style.display = "list-item";
+        for (var i = 0; i < courseList.length; i++) {
+            if (courseList[i].classList[0].toLowerCase().trim().startsWith(searchTerm.toLowerCase()) && courseList[i].innerHTML.startsWith("courseNumber")) {
+                courseList[i].style.display = "list-item";
             } else {
-                classList[i].style.display = "none";
+                courseList[i].style.display = "none";
             }
         }
     }

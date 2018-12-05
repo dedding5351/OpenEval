@@ -30,6 +30,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/about">About</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Logout</a>
+          </li>
         </ul>
       </nav>
     </div>
@@ -37,14 +40,66 @@
     <div class="jumbotron">
       <p>List of current courses here</p>
 
-        <form action="/view-surveys" method="post">
+<!--         <form action="/view-surveys" method="post">
             <input type="radio" name="courseNumber" value="CS 1332 abray3"> CS 1332: Data Struct & Algorithms<br>
             <input type="radio" name="courseNumber" value="ACCT 2101 abray3"> ACCT 2101: Accounting I<br>
             <input type="radio" name="courseNumber" value="CS 1301 abray3"> CS 1301: Intro to Computing<br>
             <input type="radio" name="courseNumber" value="ACCT 2102 abray3"> ACCT 2102:  Accounting II<br>
-            <input type="radio" name="courseNumber" value="HIST 2112 abray3"> HIST 2112:  United States since 1877<br>
           <input type="submit" value="View this course's surveys">
-        </form>
+        </form> -->
+
+<!--         
+          <form action="/view-surveys" method="post">
+            <input class="btn btn-block" type="submit" name="courseNumber" value="CS 1332 abray3"> CS 1332: Data Struct & Algorithms<br>
+          </form>
+        
+          <form action="/view-surveys" method="post">
+            <input class="btn btn-block" type="submit" name="courseNumber" value="ACCT 2101 abray3"> ACCT 2101: Accounting I<br>
+          </form>
+        
+          <form action="/view-surveys" method="post">
+            <input class="btn btn-block" type="submit" name="courseNumber" value="CS 1301 abray3"> CS 1301: Intro to Computing<br>
+          </form>
+        
+          <form action="/view-surveys" method="post">
+            <input class="btn btn-block" type="submit" name="courseNumber" value="ACCT 2102 abray3"> ACCT 2102:  Accounting II<br>
+          </form>
+         -->
+
+        <table style="margin: auto;">
+            <tr>
+              <td>CS 1332: Data Struct & Algorithms</td>
+              <td>
+                <form action="/view-surveys" method="post">
+                  <input class="btn btn-block" type="submit" name="courseNumber" value="CS 1332 abray3">
+                </form>
+              </td>
+            </tr>
+            <tr>
+              <td>ACCT 2101: Accounting I</td>
+              <td>
+                <form action="/view-surveys" method="post">
+                  <input class="btn btn-block" type="submit" name="courseNumber" value="ACCT 2101 abray3">
+                </form>
+              </td>
+            </tr>
+            <tr>
+              <td>CS 1301: Intro to Computing</td>
+              <td>
+                <form action="/view-surveys" method="post">
+                  <input class="btn btn-block" type="submit" name="courseNumber" value="CS 1301 abray3">
+                </form>
+              </td>
+            </tr>
+            <tr>
+              <td>ACCT 2102:  Accounting II</td>
+              <td>
+                <form action="/view-surveys" method="post">
+                  <input class="btn btn-block" type="submit" name="courseNumber" value="ACCT 2102 abray3">
+                </form>
+              </td>
+            </tr>
+        </table>
 
     </div>
 

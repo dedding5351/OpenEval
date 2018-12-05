@@ -17,10 +17,27 @@
 <body>
 
   <div class="container-fluid">
-
+  <div class="jumbotron">
     <form method="post" action="/submit-survey">
         <p>5ba2780447180893fce90660</p>
-        <p>default</p>
+        <table>
+          <tr>
+            <td>Survey ID</td>
+            <td><input type="text" name="surveyID"></td>
+          </tr>
+          <tr>
+            <td>Georgia Tech ID</td>
+            <td><input type="text" name="studentID"></td>
+          </tr>
+          <tr>
+            <td>Survey Type</td>
+            <td>default</td>
+          </tr>
+        </table>
+        <hr>
+        <!-- Survey ID <input type="text" name="surveyID"><br>
+        GT ID <input type="text" name="studentID">
+        <p>Survey Type: default</p> -->
         <ol>
           <li>The pace of this course is:</li>
                 <input type="radio" name="pace" id="5ba281de47180893fce90663 Too slow" value="Too slow">Too slow<br>
@@ -85,6 +102,7 @@
       <p>OpenEval | Georgia Tech Junior Design | Fall 2018</p>
     </footer> -->
 
+  </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

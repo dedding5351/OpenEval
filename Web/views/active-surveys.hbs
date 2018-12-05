@@ -24,16 +24,67 @@
       <li><button class={{{this._id}}}>{{{this.name}}}</button></li>
     {{/each}} -->
 
-    <form action="/view-results" method="post">
+    <!-- <form action="/view-results" method="post">
       {{#each message}}
         <input type="radio" name="surveyID" value="{{this._id}}"> {{{this.name}}}<br>
       {{/each}}
       <input type="submit" value="View this survey's results">
-    </form>
+    </form> -->
 
-    <footer>
+    <div class="jumbotron">
+      <form action="/view-results" method="post">
+        {{#each message}}
+          <!-- <input type="radio" name="surveyID" value="{{this._id}}"> {{{this.name}}}<br> -->
+          <input class="btn btn-lg btn-block" type="submit" name="surveyID" value="{{this._id}}: {{{this.name}}}">
+        {{/each}}
+        <!-- <input type="submit" value="Complete this survey"> -->
+      </form>
+    </div>
+
+    <br>
+
+    <button onclick="toggleHidden()" class="btn btn-lg btn-block">Create new survey</button>
+    <div id="survey-details" style="display: none;">
+      <form action="/new-survey" method="post" style="margin: auto;">
+        <table>
+          <tr>
+            <td>Start Time</td>
+            <td><input type="time" name="starttime"></td>
+          </tr>
+          <tr>
+            <td>End Time</td>
+            <td><input type="time" name="endtime"></td>
+          </tr>
+          <tr>
+            <td>Survey Name</td>
+            <td><input type="text" name="surveyname"></td>
+          </tr>
+          <tr>
+            <td>Course Name</td>
+            <td><input type="text" name="coursename"></td>
+          </tr>
+          <tr>
+            <td>Semester</td>
+            <td><input type="text" name="semester"></td>
+          </tr>
+          <tr>
+            <td>Professor ID</td>
+            <td><input type="text" name="professorID"></td>
+          </tr>
+        </table>
+<!--         Start Time<input type="time" name="starttime"><br>
+        End Time<input type="time" name="endtime"><br>
+        Survey Name<input type="text" name="surveyname"><br>
+        Course Name<input type="text" name="coursename"><br>
+        Semester<input type="text" name="semester"><br>
+        Professor ID<input type="text" name="professorID"><br> -->
+        <input type="submit" name="createSurvey" value="Release Survey" class="btn btn-lg btn-block">
+      </form>
+    </div>
+
+<!--     <footer>
       <p>OpenEval | Georgia Tech Junior Design | Fall 2018</p>
-    </footer>
+    </footer> -->
 
   </div>
 

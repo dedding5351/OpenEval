@@ -4,6 +4,14 @@ var user = {
     "usertype": "professor"
 }
 
+/**
+ *
+ * Gets input from login form and assigns those values to
+ * variables for checking
+ *
+ * @return none
+ *
+ */
 function loadUser() {
     var username = document.getElementById('inputUser').value;
     var password = document.getElementById('inputPassword').value;

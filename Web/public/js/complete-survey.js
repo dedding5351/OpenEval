@@ -5,14 +5,14 @@ const fs = require('fs');
 module.exports = {
     /**
      *
-     * Gets all of a professor's registered courses seen at the given url and
+     * Gets all of the survey questions seen at the given url and
      * constructs a Handlebars template according to the data.
      *
-     * @param  url  string, API endpoint pointing to all a professor's registered courses
+     * @param  url  string, API endpoint pointing to a survey's questions
      * @return none
      *
      */
-    getSurveyQuestions: function(url) {
+    getSurveyQuestions: function(url, surveyID) {
         console.log(url);
         // get request to API endpoint
         https.get(url, function(res) {
@@ -27,7 +27,7 @@ module.exports = {
                 const inFile = 'views/complete-survey.hbs';
                 const outFile = 'views/complete-survey.html';
                 const data = res;
-                console.log(data);
+                // console.log(data);
                 const source = fs.readFileSync(inFile, 'utf8');
                 const template = handlebars.compile(source, {strict: true});
                 const result = template(data);
@@ -40,6 +40,8 @@ module.exports = {
     }
 }
 
+// handlebars helper to see if 'this' is an object
+// lets me know if there is more nested within 'this'
 handlebars.registerHelper('ifObject', function(item, options) {
     if (typeof item === "object") {
         return options.fn(this);
@@ -48,6 +50,8 @@ handlebars.registerHelper('ifObject', function(item, options) {
     }
 });
 
+// handlebars helper to see if 'this' is a multiple choice question
+// lets me know if there i should use radio buttons for the question
 handlebars.registerHelper('ifMC', function(item, options) {
     if (item.type === "mc") {
         return options.fn(this);
@@ -56,6 +60,7 @@ handlebars.registerHelper('ifMC', function(item, options) {
     }
 });
 
+// handlebars helper to see if the index of 'this'
 handlebars.registerHelper('ifFirst', function(index, options) {
     if (index === 0) {
         return options.fn(this);

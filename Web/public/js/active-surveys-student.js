@@ -5,10 +5,10 @@ const fs = require('fs');
 module.exports = {
     /**
      *
-     * Gets all of a professor's active surveys seen at the given url and
+     * Gets all of a student's active surveys seen at the given url and
      * constructs a Handlebars template according to the data.
      *
-     * @param  url  string, API endpoint pointing to all a professor's active surveys
+     * @param  url  string, API endpoint pointing to all a student's active surveys
      * @return none
      *
      */
@@ -24,8 +24,8 @@ module.exports = {
             res.on('end', function() {
                 const res = JSON.parse(body);
                 // set input and output files for Handlebars template
-                const inFile = 'views/active-surveys.hbs';
-                const outFile = 'views/active-surveys.html';
+                const inFile = 'views/active-surveys-student.hbs';
+                const outFile = 'views/active-surveys-student.html';
                 const data = res;
                 // console.log(data);
                 if (data.message.length == 0) {
@@ -44,22 +44,5 @@ module.exports = {
         }).on('error', function(err) {
             console.log(err);
         });
-    }
-}
-
-/**
- *
- * Toggles the display visibility of the form that is responsible
- * for creating a new survey.
- *
- * @return none
- *
- */
-function toggleHidden() {
-    var x = document.getElementById("survey-details");
-    if (x.style.display == "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
     }
 }

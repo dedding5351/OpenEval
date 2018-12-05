@@ -17,21 +17,18 @@
 <body>
 
   <div class="container-fluid">
-
-    <!-- {{#each responses}}
-      <li>key: {{@key}} value: {{this}}
-    {{/each}} -->
-
-    {{#each responses}}
-      {{#ifObject this}}
-        {{@key}}
-        {{#each this}}
+    <div class="jumbotron">
+      {{#each responses}}
+        {{#ifObject this}}
+          {{@key}}
+          {{#each this}}
+            <li>{{@key}}: {{this}}</li><br>
+          {{/each}}
+        {{else}}
           <li>{{@key}}: {{this}}</li>
-        {{/each}}
-      {{else}}
-        <li>{{@key}}: {{this}}</li>
-      {{/ifObject}}
-    {{/each}}
+        {{/ifObject}}
+      {{/each}}
+    </div>
 
     <footer>
       <p>OpenEval | Georgia Tech Junior Design | Fall 2018</p>
